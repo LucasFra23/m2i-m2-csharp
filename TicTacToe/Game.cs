@@ -8,16 +8,16 @@ internal class Game
     public static char PlayerTwoIcon = 'X';
 
     private readonly Board board;
-    private readonly Player player1;
-    private readonly Player player2;
+    private readonly IPlayer player1;
+    private readonly IPlayer player2;
 
-    public Player currentPlayer {  get; private set; }
+    public IPlayer currentPlayer { get; private set; }
 
     public Game()
     {
         this.board = new Board();
         this.player1 = new Player(PlayerOneIcon);
-        this.player2 = new Player(PlayerTwoIcon);
+        this.player2 = new StupidPlayerIA(PlayerTwoIcon);
     }
 
     public void Init()
@@ -32,7 +32,7 @@ internal class Game
 
         while (true)
         {
-            Result<PlayerMoves> playerMoves = this.currentPlayer.GetNextMove();
+            Result<PlayerMoves> playerMoves = this.currentPlayer.GetNextMove(board.grid);
             if (playerMoves.IsFailure)
             {
                 Console.WriteLine(playerMoves.Error);

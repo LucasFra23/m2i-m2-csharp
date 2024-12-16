@@ -2,16 +2,16 @@
 
 namespace TicTacToe;
 
-internal class Player
+internal class Player : IPlayer
 {
-    public readonly char icon;
+    public char icon { get; }
 
     public Player(char icon)
     {
         this.icon = icon;
     }
 
-    public Result<PlayerMoves> GetNextMove()
+    public Result<PlayerMoves> GetNextMove(List<Cell> grid)
     {
         Console.WriteLine($"Player {icon} - Enter row (1-3) and column (1-3), separated by a space");
         string? input = Console.ReadLine();

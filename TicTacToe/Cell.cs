@@ -24,6 +24,9 @@ internal class Cell
         this.Value = value;
     }
 
+    internal bool IsEmpty
+        => this.Value == null;
+
     internal static Cell EmptyCell(int row, int column)
         => new Cell(row, column);
 }
