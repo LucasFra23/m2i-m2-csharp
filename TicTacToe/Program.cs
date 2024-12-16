@@ -10,18 +10,7 @@ internal class Program
 
     static void Main(string[] args)
     {
-        List<Cell> grid = new List<Cell>()
-        {
-            Cell.EmptyCell(1, 1),
-            Cell.EmptyCell(1, 2),
-            Cell.EmptyCell(1, 3),
-            Cell.EmptyCell(2, 1),
-            Cell.EmptyCell(2, 2),
-            Cell.EmptyCell(2, 3),
-            Cell.EmptyCell(3, 1),
-            Cell.EmptyCell(3, 2),
-            Cell.EmptyCell(3, 3),
-        };
+        List<Cell> grid = InitGrid();
         char currentPlayer = PlayerOne;
 
         DisplayGameBoard(grid);
@@ -30,28 +19,15 @@ internal class Program
             Console.WriteLine($"Player {currentPlayer} - Enter row (1-3) and column (1-3), separated by a space, or 'q' to quit...");
             string? input = Console.ReadLine();
 
-            if (string.Compare(input, "q", StringComparison.OrdinalIgnoreCase) == 0)
-                break;
+            if (string.Compare(input, "q", StringComparison.OrdinalIgnoreCase) == 0) break;
 
-            string[]? splittedInput = input?.Split(' ');
-
-            if (int.TryParse(splittedInput?[0], out int targetRow) is false ||
-                targetRow < 1 || targetRow > 3)
+            if (!TryParseInput(input, out int targetRow, out int targetColumn))
             {
-                Console.WriteLine("Invalid target cell row must be betwen 1 and 3");
+                Console.WriteLine("Invalid input. Please enter row and column between 1 and 3.");
                 continue;
             }
 
-            if (int.TryParse(splittedInput?[1], out int targetColumn) is false ||
-                targetColumn < 1 || targetColumn > 3)
-            {
-                Console.WriteLine("Invalid target cell column must be betwen 1 and 3");
-                continue;
-            }
-
-            bool movePlayedSuccessfully = PlayOnGameBoard(grid, targetRow, targetColumn, currentPlayer);
-
-            if (movePlayedSuccessfully is false)
+            if (!PlayOnGameBoard(grid, targetRow, targetColumn, currentPlayer))
             {
                 Console.WriteLine("Invalid move");
                 continue;
@@ -60,19 +36,59 @@ internal class Program
             Console.Clear();
             DisplayGameBoard(grid);
 
-            if (IsGameBoardWin(grid))
+            if (CheckGameStatus(grid, currentPlayer))
             {
-                Console.WriteLine($"Player {currentPlayer} has won the game !!!!");
-                break;
-            }
-            if (IsGameBoardFull(grid))
-            {
-                Console.WriteLine($"It's a draw");
+                EndGame();
                 break;
             }
 
             currentPlayer = currentPlayer == PlayerOne ? PlayerTwo : PlayerOne;
         }
+    }
+
+    private static List<Cell> InitGrid()
+    {
+        return new List<Cell>()
+        {
+            Cell.EmptyCell(1, 1), Cell.EmptyCell(1, 2), Cell.EmptyCell(1, 3),
+            Cell.EmptyCell(2, 1), Cell.EmptyCell(2, 2), Cell.EmptyCell(2, 3),
+            Cell.EmptyCell(3, 1), Cell.EmptyCell(3, 2), Cell.EmptyCell(3, 3)
+        };
+    }
+
+    private static bool TryParseInput(string? input, out int targetRow, out int targetColumn)
+    {
+        targetRow = targetColumn = 0;
+        string[]? splittedInput = input?.Split(' ');
+
+        if (splittedInput == null || splittedInput.Length != 2)
+        {
+            return false;
+        }
+
+        return int.TryParse(splittedInput[0], out targetRow) && targetRow >= 1 && targetRow <= 3 &&
+               int.TryParse(splittedInput[1], out targetColumn) && targetColumn >= 1 && targetColumn <= 3;
+    }
+
+    private static bool CheckGameStatus(List<Cell> grid, char currentPlayer)
+    {
+        if (IsGameBoardWin(grid))
+        {
+            Console.WriteLine($"Player {currentPlayer} has won the game !!!!");
+            return true;
+        }
+        if (IsGameBoardFull(grid))
+        {
+            Console.WriteLine($"It's a draw");
+            return true;
+        }
+        return false;
+    }
+
+    private static void EndGame()
+    {
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
     }
 
     private static void DisplayGameBoard(List<Cell> grid)
