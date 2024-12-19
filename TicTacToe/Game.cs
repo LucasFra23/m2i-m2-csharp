@@ -12,7 +12,7 @@ public class Game
     private readonly IPlayer player1;
     private readonly IPlayer player2;
 
-    public IPlayer currentPlayer {  get; private set; }
+    public IPlayer currentPlayer { get; private set; }
 
     public Game(IDisplay display, IPlayer player1, IPlayer player2)
     {
@@ -31,7 +31,7 @@ public class Game
 
         while (true)
         {
-            Result<PlayerMove> playerMoves = this.currentPlayer.GetNextMove();
+            Result<PlayerMove> playerMoves = this.currentPlayer.GetNextMove().Result;
             if (playerMoves.IsFailure)
             {
                 this.display.WriteLine(playerMoves.Error);

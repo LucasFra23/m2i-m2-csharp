@@ -12,7 +12,7 @@ public class HumanPlayer : Player
         this.Icon = icon;
     }
 
-    public override Result<PlayerMove> GetNextMove()
+    public async override Task<Result<PlayerMove>> GetNextMove()
     {
         Console.WriteLine($"Player {Icon} - Enter row (1-3) and column (1-3), separated by a space");
         string? input = Console.ReadLine();

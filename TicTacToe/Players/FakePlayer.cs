@@ -16,6 +16,12 @@ public class FakePlayer : Player
         this.moves = moves;
     }
 
-    public override Result<PlayerMove> GetNextMove()
-        => moves.Dequeue();
+    public async override Task<Result<PlayerMove>> GetNextMove()
+    {
+        if (this.moves.TryDequeue(out PlayerMove move))
+        {
+            return Result.Success(move);
+        }
+        return Result.Failure<PlayerMove>("No more moves available");
+    }
 }
