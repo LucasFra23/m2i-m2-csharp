@@ -15,12 +15,9 @@ public class RandomPlayer : Player
 
     public async override Task<Result<PlayerMove>> GetNextMove()
     {
+        Console.Write($"Player {Icon} is thinking");
         for (int i = 0; i < 3; i++)
         {
-            if (i == 0)
-            {
-                Console.Write($"Player {Icon} is thinking");
-            }
             Console.Write(".");
             await Task.Delay(1000); // Délai de 1 seconde
         }
