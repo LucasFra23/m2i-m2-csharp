@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puissance4", "Puissance4\Pu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puissance4Tests", "Puissance4Tests\Puissance4Tests.csproj", "{A47088BE-4512-4708-BB45-903056DE4931}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMAUI", "TestMAUI\TestMAUI.csproj", "{53B38A88-12E9-4EFD-9D3C-CDAE16006110}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,11 @@ Global
 		{A47088BE-4512-4708-BB45-903056DE4931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A47088BE-4512-4708-BB45-903056DE4931}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A47088BE-4512-4708-BB45-903056DE4931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53B38A88-12E9-4EFD-9D3C-CDAE16006110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B38A88-12E9-4EFD-9D3C-CDAE16006110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B38A88-12E9-4EFD-9D3C-CDAE16006110}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{53B38A88-12E9-4EFD-9D3C-CDAE16006110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B38A88-12E9-4EFD-9D3C-CDAE16006110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
