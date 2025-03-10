@@ -12,4 +12,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="TicTacToe"
+        ContentTemplate="{DataTemplate local:TicTacToePage}"
+        Route="TicTacToe" />
+
 </Shell>
