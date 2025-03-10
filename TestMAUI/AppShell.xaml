@@ -17,4 +17,9 @@
         ContentTemplate="{DataTemplate local:TicTacToePage}"
         Route="TicTacToe" />
 
+    <ShellContent
+        Title="Colors"
+        ContentTemplate="{DataTemplate local:Views.CollectionViewColors}"
+        Route="Colors" />
+
 </Shell>
