@@ -2,8 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:TestMAUI.Models;assembly=TestMAUI"
+             xmlns:vm="clr-namespace:TestMAUI.ViewModels;assembly=TestMAUI"
              x:Class="TestMAUI.Views.CollectionViewColors"
              Title="CollectionViewColors">
+    <ContentPage.BindingContext>
+        <vm:ColorViewModel />
+    </ContentPage.BindingContext>
+
     <ScrollView>
         <StackLayout Margin="20">
             <Label Text="COULEURS SUPER"
@@ -11,13 +16,27 @@
            FontAttributes="Bold"
            HorizontalOptions="Center" />
 
+            <Button Text="Ajouter une couleur"
+        Command="{Binding AddRandomColorCommand}"
+        HorizontalOptions="Center"
+        Margin="10" />
+
             <CollectionView ItemsSource="{Binding Couleurs}"
                     ItemsLayout="VerticalGrid, 2">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Couleur">
                         <StackLayout Padding="10">
                             <Label Text="{Binding Name}" FontSize="20" />
-                            <BoxView Color="{Binding BoxViewColor}" HeightRequest="100" />
+                            <BoxView Color="{Binding Hex}" HeightRequest="100">
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ColorViewModel}}, Path=ClickOnColorCommand}" CommandParameter="{Binding .}" />
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
+                            <Button Text="Supprimer"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ColorViewModel}}, Path=DeleteColorCommand}"
+                                    CommandParameter="{Binding .}"
+                                    HorizontalOptions="Center"
+                                    Margin="10" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

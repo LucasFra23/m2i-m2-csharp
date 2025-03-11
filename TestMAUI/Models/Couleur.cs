@@ -9,6 +9,14 @@ namespace TestMAUI.Models
     public class Couleur
     {
         public string Name { get; set; }
-        public string BoxViewColor { get; set; }
+        public string Hex { get; set; }
+
+        public Couleur(string name, string hex)
+        {
+            Name = name;
+            Hex = hex;
+        }
+
+        public override string ToString() => Name;
     }
 }
