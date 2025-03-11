@@ -5,13 +5,9 @@ namespace TestMAUI.Views;
 
 public partial class EditColorPage : ContentPage
 {
-    public Task<Couleur> Task => _taskCompletionSource.Task;
-    private TaskCompletionSource<Couleur> _taskCompletionSource;
-
-    public EditColorPage(Couleur couleur)
+    public EditColorPage(ColorViewModel colorViewModel, int index)
     {
         InitializeComponent();
-        _taskCompletionSource = new TaskCompletionSource<Couleur>();
-        BindingContext = new EditColorViewModel(couleur, _taskCompletionSource);
+        BindingContext = new EditColorViewModel(colorViewModel, index);
     }
 }

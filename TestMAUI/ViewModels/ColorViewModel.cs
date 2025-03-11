@@ -17,12 +17,12 @@ namespace TestMAUI.ViewModels
 
         void CreateColors()
         {
-            /*Couleurs.Add(new Couleur("Rouge", "#FF0000"));
+            Couleurs.Add(new Couleur("Rouge", "#FF0000"));
             Couleurs.Add(new Couleur("Vert", "#00FF00"));
             Couleurs.Add(new Couleur("Bleu", "#0000FF"));
             Couleurs.Add(new Couleur("Jaune", "#FFFF00"));
             Couleurs.Add(new Couleur("Cyan", "#00FFFF"));
-            Couleurs.Add(new Couleur("Magenta", "#FF00FF"));*/
+            Couleurs.Add(new Couleur("Magenta", "#FF00FF"));
             Couleurs.Add(new Couleur("Blanc", "#FFFFFF"));
             Couleurs.Add(new Couleur("Noir", "#000000"));
         }
@@ -47,18 +47,11 @@ namespace TestMAUI.ViewModels
         }
 
         [RelayCommand]
-        private async Task ClickOnColor(Couleur couleur)
+        private async void ClickOnColor(Couleur couleur)
         {
-            var editPage = new EditColorPage(couleur);
-            await Application.Current.MainPage.Navigation.PushAsync(editPage);
-            var updatedColor = await editPage.Task;
-
-            // Update the color in the collection
             var index = Couleurs.IndexOf(couleur);
-            if (index != -1)
-            {
-                Couleurs[index] = updatedColor;
-            }
+            var editPage = new EditColorPage(this, index);
+            await Application.Current.MainPage.Navigation.PushAsync(editPage);
         }
     }
 }

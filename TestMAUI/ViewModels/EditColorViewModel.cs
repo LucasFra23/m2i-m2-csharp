@@ -10,23 +10,25 @@ namespace TestMAUI.ViewModels
         [ObservableProperty]
         private Couleur couleur;
 
-        private TaskCompletionSource<Couleur> _taskCompletionSource;
+        private ColorViewModel _colorViewModel;
+        private int _index;
 
         public EditColorViewModel()
         {
             // Default constructor for XAML usage
         }
 
-        public EditColorViewModel(Couleur couleur, TaskCompletionSource<Couleur> taskCompletionSource)
+        public EditColorViewModel(ColorViewModel colorViewModel, int index)
         {
-            Couleur = couleur;
-            _taskCompletionSource = taskCompletionSource;
+            _colorViewModel = colorViewModel;
+            _index = index;
+            Couleur = colorViewModel.Couleurs[index];
         }
 
         [RelayCommand]
         private async void Save()
         {
-            _taskCompletionSource.SetResult(Couleur);
+            _colorViewModel.Couleurs[_index] = Couleur;
             await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
