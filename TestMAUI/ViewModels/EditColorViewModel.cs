@@ -28,7 +28,7 @@ namespace TestMAUI.ViewModels
         [RelayCommand]
         private async void Save()
         {
-            _colorViewModel.Couleurs[_index] = Couleur;
+            await _colorViewModel.UpdateColor(_index, Couleur);
             await Application.Current.MainPage.Navigation.PopAsync();
         }
     }

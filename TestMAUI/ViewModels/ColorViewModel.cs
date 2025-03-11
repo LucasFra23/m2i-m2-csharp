@@ -1,37 +1,41 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using TestMAUI.Models;
+using TestMAUI.Repositories;
 using TestMAUI.Views;
 
 namespace TestMAUI.ViewModels
 {
     public partial class ColorViewModel : ObservableObject
     {
+        private readonly IColorsRepository _repository;
         public ObservableCollection<Couleur> Couleurs { get; } = new();
 
-        public ColorViewModel()
+        public ColorViewModel(IColorsRepository repository)
         {
+            _repository = repository;
             CreateColors();
         }
 
-        void CreateColors()
+        private async void CreateColors()
         {
-            Couleurs.Add(new Couleur("Rouge", "#FF0000"));
-            Couleurs.Add(new Couleur("Vert", "#00FF00"));
-            Couleurs.Add(new Couleur("Bleu", "#0000FF"));
-            Couleurs.Add(new Couleur("Jaune", "#FFFF00"));
-            Couleurs.Add(new Couleur("Cyan", "#00FFFF"));
-            Couleurs.Add(new Couleur("Magenta", "#FF00FF"));
-            Couleurs.Add(new Couleur("Blanc", "#FFFFFF"));
-            Couleurs.Add(new Couleur("Noir", "#000000"));
+            var colors = await _repository.GetColorsAsync();
+            Couleurs.Clear();
+            foreach (var color in colors)
+            {
+                Couleurs.Add(color);
+            }
         }
 
         [RelayCommand]
-        private void AddRandomColor()
+        private async Task AddRandomColor()
         {
             string hex = $"#{RandomColor()}";
-            Couleurs.Add(new Couleur($"Random Color {Couleurs.Count + 1}", hex));
+            var newColor = new Couleur("Random", hex);
+            await _repository.AddColorAsync(newColor);
+            Couleurs.Add(newColor);
         }
 
         string RandomColor()
@@ -41,8 +45,9 @@ namespace TestMAUI.ViewModels
         }
 
         [RelayCommand]
-        private void DeleteColor(Couleur couleur)
+        private async Task DeleteColor(Couleur couleur)
         {
+            await _repository.RemoveColorAsync(couleur);
             Couleurs.Remove(couleur);
         }
 
@@ -52,6 +57,12 @@ namespace TestMAUI.ViewModels
             var index = Couleurs.IndexOf(couleur);
             var editPage = new EditColorPage(this, index);
             await Application.Current.MainPage.Navigation.PushAsync(editPage);
+        }
+
+        public async Task UpdateColor(int index, Couleur color)
+        {
+            await _repository.UpdateColorAsync(index, color);
+            Couleurs[index] = color;
         }
     }
 }

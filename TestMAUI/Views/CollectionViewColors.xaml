@@ -5,9 +5,6 @@
              xmlns:vm="clr-namespace:TestMAUI.ViewModels;assembly=TestMAUI"
              x:Class="TestMAUI.Views.CollectionViewColors"
              Title="CollectionViewColors">
-    <ContentPage.BindingContext>
-        <vm:ColorViewModel />
-    </ContentPage.BindingContext>
 
     <ScrollView>
         <StackLayout Margin="20">

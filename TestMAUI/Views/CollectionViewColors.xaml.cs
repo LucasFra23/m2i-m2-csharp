@@ -1,11 +1,13 @@
 using TestMAUI.Models;
+using TestMAUI.ViewModels;
 
 namespace TestMAUI.Views;
 
 public partial class CollectionViewColors : ContentPage
 {
-    public CollectionViewColors()
+    public CollectionViewColors(ColorViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }
