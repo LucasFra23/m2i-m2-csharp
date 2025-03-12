@@ -4,12 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Puissance4MAUI"
+    xmlns:views="clr-namespace:Puissance4MAUI.Views"
     Shell.FlyoutBehavior="Flyout"
     Title="Puissance4MAUI">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Puissance 4"
+        ContentTemplate="{DataTemplate views:Puissance4}"
+        Route="Puissance4" />
 
 </Shell>
