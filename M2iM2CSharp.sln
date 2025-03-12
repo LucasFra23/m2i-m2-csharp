@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMAUI", "TestMAUI\TestMA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puissance4MAUI", "Puissance4MAUI\Puissance4MAUI.csproj", "{7C7FC9D2-FBF6-4FC6-8C0C-6F9A8CA27943}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puissance4MAUITests", "Puissance4MAUITests\Puissance4MAUITests.csproj", "{44E7C584-4160-4849-B862-0FE3F728E1FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,8 +48,15 @@ Global
 		{7C7FC9D2-FBF6-4FC6-8C0C-6F9A8CA27943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C7FC9D2-FBF6-4FC6-8C0C-6F9A8CA27943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C7FC9D2-FBF6-4FC6-8C0C-6F9A8CA27943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44E7C584-4160-4849-B862-0FE3F728E1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44E7C584-4160-4849-B862-0FE3F728E1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44E7C584-4160-4849-B862-0FE3F728E1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44E7C584-4160-4849-B862-0FE3F728E1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F71E9C8-67C4-47B1-B3AA-AC4530BF7D02}
 	EndGlobalSection
 EndGlobal

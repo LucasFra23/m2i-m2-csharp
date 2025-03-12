@@ -38,7 +38,7 @@ namespace Puissance4MAUI.ViewModels
         }
 
         [RelayCommand]
-        private void DropToken(int column)
+        public void DropToken(int column)
         {
             if (IsGameOver) return;
 
